@@ -14,7 +14,7 @@ public Plugin myinfo =
     name = "MapCtrl",
     author = "Lyric",
     description = "L4D2 Coop Map Control",
-    version = "0.2",
+    version = "1.0",
     url = "https://github.com/scooderic"
 };
 
@@ -81,6 +81,7 @@ public Action Timer_Announce(Handle timer, any client)
             PrintToChat(client, "\x04[MapCtrl]\x03 加油，奥利给！ ");
         } */
     }
+    return Plugin_Stop;
 }
 
 public Action Timer_BeforeChangeMap(Handle timer)
@@ -127,7 +128,7 @@ public void Event_FinalWin(Event event, const char[] name, bool dontBroadcast)
         else 
         {
             PrintToChatAll("\x04[MapCtrl]\x03 已完成所有战役，自动换图已经结束 ");
-            PrintToChatAll("\x04[MapCtrl]\x03 自动换图 v0.2 by Lyric");
+            PrintToChatAll("\x04[MapCtrl]\x03 自动换图 v1.0 by Lyric");
             CreateTimer(20.0, Timer_FinalAnnounce, 0, 0);
         }
     }
