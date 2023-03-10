@@ -1,12 +1,17 @@
-# l4d2-mapctrl
-An auto map changer sourcemod plugin for Left 4 Dead 2.
+# Description
+This is an auto map switcher (sourcemod plugin) for Left 4 Dead 2 Dedicated Server.
 
-这是一个通过预编辑配置文件实现在 L4D2 游戏过程中自动切换地图的插件。
+# Feature
+* Automatically switch map by pre-defining a list in CFG.
 
-为了精简，该插件不产生 .cfg 配置文件。
+# Cvar
+A configuration file named "mapctrl.cfg" will automatically be created for you upon the first run in the "/cfg/sourcemod/" folder.
 
-data/mapctrl.txt 是预配置地图顺序的文件，编辑时格式参考本仓库中的 data/mapctrl.txt。
+~~~
+// "map1_end,map2_start|map2_end,map3_start|map3_end,map4_start"
+// -
+mapctrl_map_pair_list "c1m4_atrium,c2m1_highway|c2m5_concert,c3m1_plankcountry|c3m4_plantation,c4m1_milltown_a"
+~~~
 
-plugins/mapctrl.smx 是已经编译好的成品文件，可以直接丢到 L4D2 服务器上使用。
-
-支持第三方图。
+# Installation
+* Put the "/plugins/mapctrl.smx" file in your "/addons/sourcemod/plugins/" folder.

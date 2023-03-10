@@ -16,15 +16,15 @@ char g_MapPairList[MAX_MAP_COUNT][MAX_MAP_NAME_LENGTH];
 StringMap g_MapMap;
 
 char g_MapNameCharBuf[MAX_MAP_NAME_LENGTH];
-char g_CurrentMap[64];
-char g_NextMap[64];
+char g_CurrentMap[MAX_MAP_NAME_LENGTH];
+char g_NextMap[MAX_MAP_NAME_LENGTH];
 
 public Plugin myinfo =
 {
     name = "MapCtrl",
     author = "Lyric",
     description = "L4D2 Coop Map Control",
-    version = "2.0",
+    version = "2.0.1",
     url = "https://github.com/scooderic"
 };
 
@@ -47,6 +47,7 @@ public void OnPluginStart()
 public OnMapPairListChanged(Handle cvar, const char[] oldVal, const char[] newVal)
 {
     strcopy(g_MapPairListStr, sizeof(g_MapPairListStr), newVal);
+    SetupMaps(g_MapPairListStr);
 }
 
 void SetupMaps(const char[] mapPairListStr)
@@ -108,7 +109,7 @@ public Action Timer_Announce(Handle timer, int client)
 public Action Timer_BeforeChangeMap(Handle timer)
 {
     PrintToChatAll("\x04[MapCtrl]\x03 下个地图：\x04%s", g_NextMap);
-    CreateTimer(10.7, Timer_DoChangeMap, 0);
+    CreateTimer(10.0, Timer_DoChangeMap, 0);
     return Plugin_Stop;
 }
 
@@ -136,13 +137,13 @@ public void Event_FinalWin(Event event, const char[] name, bool dontBroadcast)
     {
         if (strlen(g_NextMap) > 0)
         {
-            PrintToChatAll("\x04[MapCtrl]\x03 已完成本战役，31.7 秒后将自动换图...");
+            PrintToChatAll("\x04[MapCtrl]\x03 已完成本战役，31 秒后将自动换图...");
             CreateTimer(21.0, Timer_BeforeChangeMap, 0);
         }
         else 
         {
             PrintToChatAll("\x04[MapCtrl]\x03 已完成所有战役，自动换图已经结束 ");
-            PrintToChatAll("\x04[MapCtrl]\x03 自动换图 v2.0 by Lyric");
+            PrintToChatAll("\x04[MapCtrl]\x03 自动换图 v2.0.1 by Lyric");
             CreateTimer(21.0, Timer_FinalAnnounce, 0);
         }
     }
