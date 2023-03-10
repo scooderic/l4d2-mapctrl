@@ -65,7 +65,7 @@ void SetupMaps(const char[] mapPairListStr)
                 char endMapName[MAX_MAP_NAME_LENGTH];
                 SplitString(g_MapNameCharBuf, ",", endMapName, sizeof(endMapName));
                 ReplaceString(g_MapNameCharBuf, sizeof(g_MapNameCharBuf), endMapName, "", true);
-                g_MapMap.SetString(endMapName, g_MapNameCharBuf[1], true);
+                if (strlen(g_MapNameCharBuf) > 1) g_MapMap.SetString(endMapName, g_MapNameCharBuf[1], true);
             }
             else break;
             i++;
